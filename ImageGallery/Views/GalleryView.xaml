@@ -1,0 +1,64 @@
+﻿<UserControl x:Class="ImageGallery.Views.GalleryView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:cal="http://www.caliburnproject.org"
+             mc:Ignorable="d"
+             d:DesignHeight="300" d:DesignWidth="300">
+    <StackPanel>
+        <Border Visibility="{Binding IsInEditMode}" Padding="2" Margin="1" BorderBrush="Black" BorderThickness="0,0,0,0">
+            <Grid FocusManager.FocusedElement="{Binding ElementName=ImageName}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+                <TextBox x:Name="ImageName" cal:Message.Attach="[Event KeyDown]=[Action ImageNameKeyDown($eventArgs)]" AutoWordSelection="True" SelectionStart="0" Text="{Binding Name, NotifyOnValidationError=True,ValidatesOnDataErrors=True,ValidatesOnExceptions=True}" Margin="0,0,5,0"></TextBox>
+            <Button Grid.Column="1" x:Name="Save" ToolTip="ثبت">
+                <Image Width="16" Height="16" Source="/Styles/Default/Images/save.png"></Image>
+            </Button>
+            <Button Grid.Column="2" x:Name="Clear" ToolTip="‍‍‍پاک کردن">
+                <Image Width="16" Height="16" Source="/Styles/Default/Images/erase.png" ></Image>
+            </Button>
+        </Grid>
+        </Border>
+
+        <Border Visibility="{Binding IsInNormalMode}" Padding="2" Margin="1" BorderBrush="Black" BorderThickness="0,0,0,0">
+            <Border.Style>
+                <Style TargetType="Border">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding MatchedSearch}" Value="True" >
+                            <Setter Property="Background" >
+                                <Setter.Value>
+                                    <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+                                        <GradientStop Color="#FFFFF865" Offset="0"/>
+                                        <GradientStop Color="#FFE8E800" Offset="1"/>
+                                    </LinearGradientBrush>
+                                </Setter.Value>
+                            </Setter>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Border.Style>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <TextBlock Text="{Binding Name}" Margin="0,0,5,0"></TextBlock>
+            <Button Visibility="{Binding AppSettings.IsPublisher}" Grid.Column="1" x:Name="Edit" ToolTip="ویرایش">
+                <Image Width="16" Height="16" Source="/Styles/Default/Images/edit.png" ></Image>
+            </Button>
+                <Button ToolTip="زیر شاخه جدید" Visibility="{Binding AppSettings.IsPublisher}" Grid.Column="2" x:Name="Add">
+                    <Image Width="16" Height="16" Source="/Styles/Default/Images/add_list.png" ></Image>
+                </Button>
+                <Button ToolTip="حذف گالری" Visibility="{Binding AppSettings.IsPublisher}" Grid.Column="3" cal:Message.Attach="[Event Click]=[Action Remove($datacontext)]">
+                    <Image Width="16" Height="16" Source="/Styles/Default/Images/delete.png" ></Image>
+                </Button>
+        </Grid>
+        </Border>
+    </StackPanel>
+</UserControl>

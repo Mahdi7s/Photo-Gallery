@@ -1,0 +1,38 @@
+﻿<UserControl x:Class="ImageGallery.Views.TextImageView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:cal="http://www.caliburnproject.org"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <Grid cal:Message.Attach="[Event MouseLeftButtonDown]=[Action OnImageMouseDown($eventArgs)]">
+        <Grid.Style>
+            <Style TargetType="Grid">
+                <Setter Property="Background" Value="#FF343434" />
+                <Style.Triggers>
+                    <DataTrigger Binding="{Binding IsSelected}" Value="True">
+                        <Setter Property="Background" Value="#FF5B5B5B" />
+                    </DataTrigger>
+                </Style.Triggers>
+            </Style>
+        </Grid.Style>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Image Margin="5" Grid.Row="0" Source="{Binding ImageName}" ToolTip="{Binding Name}"/>
+        <Grid Grid.Row="1" Margin="5">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />            
+          </Grid.ColumnDefinitions>
+            <TextBlock Text="{Binding Name}" Foreground="WhiteSmoke"/>
+            <Button x:Name="Edit" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5,5,0,0" Grid.Column="1">
+                <Image Source="/Styles/Default/Images/pencil.png" Width="10" Height="10" />
+            </Button>
+            <CheckBox Grid.Column="2" Width="16" Height="16" Visibility="{Binding AppSettings.IsPublisher}" x:Name="IsSelected" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,5,5,0"/>
+        </Grid>
+    </Grid>
+</UserControl>

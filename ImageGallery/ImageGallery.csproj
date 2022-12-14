@@ -1,0 +1,236 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{FDF5E154-FA3C-4CB5-944C-F6060F68791D}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ImageGallery</RootNamespace>
+    <AssemblyName>ImageGallery</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>logo.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Caliburn.Micro">
+      <HintPath>..\..\..\..\..\Desktop\SubtitleTranslator\SubtitleTranslator.Application\bin\Debug\Caliburn.Micro.dll</HintPath>
+    </Reference>
+    <Reference Include="Ionic.Zip">
+      <HintPath>..\..\..\..\..\Downloads\Compressed\DotNetZipLib-DevKit-v1.9\zip-v1.9\Release\Ionic.Zip.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration.Install" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Windows.Interactivity">
+      <HintPath>..\..\..\..\..\Desktop\SubtitleTranslator\SubtitleTranslator.Application\bin\Debug\System.Windows.Interactivity.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="TS7S.Base">
+      <HintPath>..\..\TS7S\TS7S.Base\bin\Debug\TS7S.Base.dll</HintPath>
+    </Reference>
+    <Reference Include="TS7S.Wpf">
+      <HintPath>..\..\TS7S\TS7S.Wpf\bin\Debug\TS7S.Wpf.dll</HintPath>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="AssetsInstaller.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Messages\ShowSplashMessage.cs" />
+    <Compile Include="Services\FilesService.cs" />
+    <Compile Include="Messages\GallerySelectedMessage.cs" />
+    <Compile Include="Messages\GenericMessage.cs" />
+    <Compile Include="Models\AppSettings.cs" />
+    <Compile Include="Models\Galleries.cs" />
+    <Compile Include="Models\Gallery.cs" />
+    <Compile Include="Models\TextImage.cs" />
+    <Compile Include="ShellViewModel.cs" />
+    <Compile Include="SplashViewModel.cs" />
+    <Compile Include="Utils\ActionResult.cs" />
+    <Compile Include="ViewModels\AboutViewModel.cs" />
+    <Compile Include="ViewModels\GalleriesViewModel.cs" />
+    <Compile Include="ViewModels\GalleryViewModel.cs" />
+    <Compile Include="ViewModels\SaveDialogViewModel.cs" />
+    <Compile Include="ViewModels\TextImagesViewModel.cs" />
+    <Compile Include="ViewModels\TextImageViewModel.cs" />
+    <Compile Include="Views\AboutView.xaml.cs">
+      <DependentUpon>AboutView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SaveDialogView.xaml.cs">
+      <DependentUpon>SaveDialogView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\TextImageEditView.xaml.cs">
+      <DependentUpon>TextImageEditView.xaml</DependentUpon>
+    </Compile>
+    <Page Include="ShellView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="AppBootstrapper.cs" />
+    <Compile Include="IShell.cs" />
+    <Page Include="SplashView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\AboutView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\GalleriesView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\GalleryView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SaveDialogView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\TextImageEditView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\TextImagesView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\TextImageView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <AppDesigner Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Styles\Default\Images\ajax-loader.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Styles\Default\Images\exe.png" />
+    <Resource Include="Styles\Default\Images\maximize.png" />
+    <Resource Include="Styles\Default\Images\minimize.png" />
+    <Resource Include="Styles\Default\Images\close.png" />
+    <Resource Include="Styles\Default\Images\add_list.png" />
+    <Resource Include="Styles\Default\Images\add_file.png" />
+    <Resource Include="Styles\Default\Images\add_folder.png" />
+    <Resource Include="Styles\Default\Images\save.png" />
+    <Resource Include="Styles\Default\Images\downloads.png" />
+    <Resource Include="Styles\Default\Images\delete.png" />
+    <Resource Include="Styles\Default\Images\delete_database.png" />
+    <Resource Include="Styles\Default\Images\folder.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Styles\Default\Images\bg.png" />
+    <SplashScreen Include="Styles\Default\Images\GalleryAx.jpg" />
+    <Resource Include="Styles\Default\Images\KenareNasb.jpg" />
+    <Resource Include="Styles\Default\Images\logo.jpg" />
+    <Resource Include="Styles\Default\Images\logo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Styles\Default\Images\erase.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Styles\Default\Images\zoom.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="logo.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Styles\Default\Images\logo.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Styles\Default\Images\Word-Writer.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Styles\Default\Images\pencil.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Styles\Default\Images\edit.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>xcopy "$(ProjectDir)\bin\Debug" "$(ProjectDir)\bin\3rd\"  /i /y</PostBuildEvent>
+  </PropertyGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

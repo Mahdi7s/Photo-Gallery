@@ -1,0 +1,10 @@
+﻿<Window x:Class="ImageGallery.SplashView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+        Title="SplashView" Height="400" Width="500" WindowStartupLocation="CenterScreen" WindowStyle="None">
+    <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="/Styles/Default/Images/GalleryAx.jpg" Stretch="Fill"/>
+        </Grid.Background>
+    </Grid>
+</Window>

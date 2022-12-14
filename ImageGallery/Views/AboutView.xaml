@@ -1,0 +1,36 @@
+﻿<UserControl x:Class="ImageGallery.Views.AboutView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <Border BorderThickness="1" CornerRadius="9">
+    	<Border.Background>
+    		<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+    			<GradientStop Color="#FF959595"/>
+    			<GradientStop Color="#FFAAAAAA" Offset="0.569"/>
+    		</LinearGradientBrush>
+    	</Border.Background>
+		<Grid Margin="1,-1,-1,1">
+			<Grid.RowDefinitions>
+				<RowDefinition Height="35*"/>
+				<RowDefinition Height="47*"/>
+				<RowDefinition Height="43*"/>
+				<RowDefinition Height="38*"/>
+				<RowDefinition Height="45*"/>
+				<RowDefinition Height="91*"/>
+			</Grid.RowDefinitions>
+			<TextBlock HorizontalAlignment="Center" Margin="0" TextWrapping="Wrap" VerticalAlignment="Center" FontSize="16" FontWeight="Bold" Text="شرکت نرم افزاری ایرسا"/>
+			<TextBlock HorizontalAlignment="Center" Margin="0" TextWrapping="Wrap" VerticalAlignment="Center" Grid.Row="1" FontWeight="Bold" Text="گالری عکس ایرسا"/>
+			<TextBlock HorizontalAlignment="Right" Margin="0,13.447,21.997,13.448" Grid.Row="2" TextWrapping="Wrap" VerticalAlignment="Center"><Run FlowDirection="RightToLeft" Language="fa-ir" Text="وب سایت : "/></TextBlock>
+			<TextBlock HorizontalAlignment="Right" Margin="0,10,23.332,11.873" Grid.Row="3" TextWrapping="Wrap" VerticalAlignment="Center" Height="16"><Run FlowDirection="RightToLeft" Language="fa-ir" Text="ایمیل : "/></TextBlock>
+			<TextBlock HorizontalAlignment="Right" Margin="0,14.425,25.333,14.424" Grid.Row="4" TextWrapping="Wrap" VerticalAlignment="Center" Height="16"><Run FlowDirection="RightToLeft" Language="fa-ir" Text="تلفن : "/></TextBlock>
+			<TextBlock Margin="10,0,17.216,48.776" TextWrapping="Wrap" VerticalAlignment="Bottom" TextAlignment="Right" Grid.Row="5" Text="خواهشمند است نظرات و پیشنهادهای خود را جهت بهبود برنامه با ما در میان بگذارید" Height="31.92"/>
+            <TextBlock HorizontalAlignment="Center" Margin="65.362,13.947,140.028,12.948" Grid.Row="2" TextWrapping="Wrap" VerticalAlignment="Center" Width="92.61" ><Hyperlink>www.irsateam.ir</Hyperlink></TextBlock>
+			<TextBlock HorizontalAlignment="Center" Margin="65.362,36.852,140.028,40.845" Grid.Row="2" TextWrapping="Wrap" VerticalAlignment="Center" Grid.RowSpan="3" Width="92.61"><Hyperlink>info@irsateam.ir</Hyperlink></TextBlock>
+            <TextBlock HorizontalAlignment="Center" Margin="65.362,16.888,140.754,12.001" Grid.Row="4" TextWrapping="Wrap" VerticalAlignment="Center" Height="15.96" Width="91.884">0351 - 726 2375</TextBlock>
+        
+		</Grid>
+	</Border>
+</UserControl>

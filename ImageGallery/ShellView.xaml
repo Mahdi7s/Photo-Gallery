@@ -1,0 +1,132 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:cal="http://www.caliburnproject.org"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:Views="clr-namespace:ImageGallery.Views" mc:Ignorable="d" x:Class="ImageGallery.ShellView"
+        WindowStyle="None" WindowState="{Binding WindowState}" WindowStartupLocation="CenterScreen"
+        Icon="/Styles/Default/Images/logo.png" FlowDirection="RightToLeft" FontFamily="Tahoma"
+        Title="{Binding ShellTitle}" Height="600" Width="800">
+	<Window.Resources>
+		<Storyboard x:Key="showAboutUsStory">
+			<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="grid">
+				<DiscreteObjectKeyFrame KeyTime="0:0:0.4" Value="{x:Static Visibility.Visible}"/>
+			</ObjectAnimationUsingKeyFrames>
+			<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="grid">
+				<EasingDoubleKeyFrame KeyTime="0:0:0.4" Value="1"/>
+			</DoubleAnimationUsingKeyFrames>
+		</Storyboard>
+		<Storyboard x:Key="hideAboutUsStory">
+			<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="grid">
+				<SplineDoubleKeyFrame KeyTime="0:0:0.4" Value="0"/>
+			</DoubleAnimationUsingKeyFrames>
+			<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="grid">
+				<DiscreteObjectKeyFrame KeyTime="0:0:0.4" Value="{x:Static Visibility.Collapsed}"/>
+			</ObjectAnimationUsingKeyFrames>
+		</Storyboard>
+	</Window.Resources>
+	<Window.Triggers>
+		<EventTrigger RoutedEvent="MenuItem.Click" SourceName="menuItem">
+			<BeginStoryboard x:Name="showAboutUsStory_BeginStoryboard" Storyboard="{StaticResource showAboutUsStory}"/>
+		</EventTrigger>
+		<EventTrigger RoutedEvent="ButtonBase.Click" SourceName="button">
+			<BeginStoryboard x:Name="hideAboutUsStory_BeginStoryboard" Storyboard="{StaticResource hideAboutUsStory}"/>
+		</EventTrigger>
+	</Window.Triggers>
+    <Window.TaskbarItemInfo>
+        <TaskbarItemInfo Description="گالری عکس ایرسا" />
+    </Window.TaskbarItemInfo>
+    <Grid>
+        <DockPanel>
+            <StackPanel DockPanel.Dock="Top">
+            <Grid FlowDirection="LeftToRight" Margin="0,0,0,5" cal:Message.Attach="[Event MouseLeftButtonDown] = [Action OnMouseLeftButtonDown($view, $eventArgs)];">
+                <Grid.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#d2d2d2" Offset="0"/>
+                        <GradientStop Color="#bcbcbc" Offset="1"/>
+                    </LinearGradientBrush>
+                </Grid.Background>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                    <Menu Height="22">
+                        <MenuItem  Header="پرونده">
+                            <MenuItem.Icon>
+                                <Image Source="/Styles/Default/Images/Word-Writer.png" />
+                            </MenuItem.Icon>
+
+                            <MenuItem x:Name="New" Header="جدید" Visibility="{Binding AppSettings.IsPublisher}">
+                                <MenuItem.Icon>
+                                    <Image Source="/Styles/Default/Images/downloads.png" />
+                                </MenuItem.Icon>
+                            </MenuItem>
+                            <MenuItem x:Name="Load" Header="باز کردن" Visibility="{Binding AppSettings.IsPublisher}">
+                                <MenuItem.Icon>
+                                    <Image Source="/Styles/Default/Images/downloads.png" />
+                                </MenuItem.Icon>
+                            </MenuItem>
+                            <MenuItem x:Name="Save" Header="ذخیره" Visibility="{Binding AppSettings.IsPublisher}">
+                                <MenuItem.Icon>
+                                    <Image Source="/Styles/Default/Images/save.png" />
+                                </MenuItem.Icon>
+                            </MenuItem>
+                            <MenuItem x:Name="MakeSetup" Header="تولید Setup" Visibility="{Binding AppSettings.IsPublisher}" >
+                                <MenuItem.Icon>
+                                    <Image Source="/Styles/Default/Images/exe.png" />
+                                </MenuItem.Icon>
+                            </MenuItem>
+                            <MenuItem x:Name="menuItem" Header="درباره ما">
+                                <MenuItem.Icon>
+                                    <Image Source="/Styles/Default/Images/exe.png" />
+                                </MenuItem.Icon>
+                            </MenuItem>
+                            <MenuItem Header="خروج" cal:Message.Attach="[Event Click]=[Action Exit]">
+                                <MenuItem.Icon>
+                                    <Image Source="/Styles/Default/Images/close.png" />
+                                </MenuItem.Icon>
+                            </MenuItem>
+                        </MenuItem>
+                    </Menu>
+                <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Center">
+                    <Image Source="/Styles/Default/Images/logo.png" Width="24" Height="24" />
+                        <TextBlock Margin="10,0,0,0" Text="{Binding ShellTitle}" VerticalAlignment="Center" />
+                </StackPanel>
+                <StackPanel Grid.Column="2" Orientation="Horizontal">
+                    <Button x:Name="MinWinState" >
+                        <Image Width="22" Height="22" Source="/Styles/Default/Images/minimize.png" />
+                    </Button>
+                    <Button x:Name="MaxWinState" >
+                        <Image Width="22" Height="22" Source="/Styles/Default/Images/maximize.png" />
+                    </Button>
+                    <Button x:Name="Exit" >
+                        <Image Width="22" Height="22" Source="/Styles/Default/Images/close.png" />
+                    </Button>
+                </StackPanel>
+            </Grid>
+                
+            </StackPanel>
+            <Border DockPanel.Dock="Left" MinWidth="200" BorderBrush="Black" BorderThickness="0,1,1,0" Padding="0,0,5,0" ScrollViewer.VerticalScrollBarVisibility="Auto">
+                <ContentControl x:Name="Galleries"/>
+            </Border>
+            <Border BorderBrush="Black" BorderThickness="0,1,0,0">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="1" >
+                        <ContentControl x:Name="TextImages" FlowDirection="LeftToRight"/>
+                    </Grid>
+                </Grid>
+            </Border>
+        </DockPanel>
+        <Grid Visibility="{Binding IsDirty, Converter={StaticResource BoolVisibiltyConverter}}" Background="#B2EEEEEE" d:IsHidden="True">
+            <Image Source="/Styles/Default/Images/ajax-loader.gif" HorizontalAlignment="Center" VerticalAlignment="Center" Width="80" Height="80" />
+        </Grid>
+        <Grid x:Name="grid" HorizontalAlignment="Center" VerticalAlignment="Center" Opacity="0" Visibility="Collapsed">
+        	<Views:AboutView  Width="299.161" Height="375.015" FlowDirection="LeftToRight"/>
+        	<Button x:Name="button" Content="X" HorizontalAlignment="Left" VerticalAlignment="Top" Width="16.84" Margin="10,10,0,0"/>
+        </Grid>
+    </Grid>
+</Window>

@@ -1,0 +1,18 @@
+﻿<Window x:Class="ImageGallery.Views.SaveDialogView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" ShowInTaskbar="False" 
+        Title="ذخیره و خروج" SizeToContent="WidthAndHeight" WindowStyle="None" WindowStartupLocation="CenterOwner">
+    <StackPanel Orientation="Vertical">
+        <TextBlock Text="آیا مایل به ذخیره گالری فعلی هستید؟"></TextBlock>
+        <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" Margin="0,10,0,0">
+            <StackPanel.Resources>
+                <Style TargetType="Button">
+                    <Setter Property="Margin" Value="5,0,0,0"/>
+                </Style>
+            </StackPanel.Resources>
+            <Button x:Name="Yes" IsDefault="True" IsCancel="False">بله</Button>
+            <Button x:Name="No" >خیر</Button>
+            <Button x:Name="Cancel" IsCancel="True">لغو</Button>
+        </StackPanel>
+    </StackPanel>
+</Window>

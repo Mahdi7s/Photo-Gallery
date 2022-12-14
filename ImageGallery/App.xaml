@@ -1,0 +1,19 @@
+﻿<Application x:Class="ImageGallery.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:Ts7s="clr-namespace:TS7S.Wpf;assembly=TS7S.Wpf"
+             xmlns:models="clr-namespace:ImageGallery.Models"
+             xmlns:local="clr-namespace:ImageGallery" DispatcherUnhandledException="Application_DispatcherUnhandledException_1">
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary>
+                    <local:AppBootstrapper x:Key="bootstrapper"></local:AppBootstrapper>
+                </ResourceDictionary>    
+            </ResourceDictionary.MergedDictionaries>
+            <Ts7s:BoolToVisibilityConverter x:Key="BoolVisibiltyConverter" />
+            <Ts7s:ReverseVisibilityConverter x:Key="ReverseVisibiltyConverter" />
+            <models:AppSettings x:Key="AppSettings" ></models:AppSettings>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>
